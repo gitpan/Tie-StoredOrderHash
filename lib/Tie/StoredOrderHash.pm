@@ -3,7 +3,7 @@ package Tie::StoredOrderHash;
 use strict;
 use warnings;
 
-our $VERSION = '0.21';
+our $VERSION = '0.22';
 
 sub new {
     # Return a reference to a new tied hash
@@ -86,6 +86,7 @@ sub TIEHASH {
 
 sub FETCH {
     my ($self, $key) = @_;
+    return unless exists $self->[lookup]->{$key};
 
     return $self->[lookup]->{$key}->[value];
 }

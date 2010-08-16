@@ -3,7 +3,7 @@
 
 #########################
 
-use Test::More tests => 82;
+use Test::More tests => 85;
 BEGIN { use_ok('Tie::StoredOrderHash', 'ordered', 'is_ordered') };
 
 #########################
@@ -235,4 +235,17 @@ BEGIN { use_ok('Tie::StoredOrderHash', 'ordered', 'is_ordered') };
     my $hash = ordered [ one => 1 ];
     ok(is_ordered($hash), 'is_ordered recognises ordered hash');
     ok(! is_ordered({}), 'is_ordered recognises regular boring non-ordered hash');
+}
+
+{
+    # Regression test:
+    # was a bug: retrieving a non-existent key messes up the internal structures if that key is subsequently stored.
+
+    tie my %hash, 'Tie::StoredOrderHash';
+
+    is($hash{foo}, undef, 'value of key foo is undef');
+    $hash{foo} = "bar";
+
+    is($hash{foo}, "bar", 'value of key "foo" is "bar"');
+    is(keys %hash, 1, 'hash has 1 key');
 }

@@ -1,4 +1,4 @@
-Tie-StoredOrderHash version 0.21
+Tie-StoredOrderHash version 0.22
 ================================
 
 Tie::StoredOrderHash is a(nother) implementation of a Perl hash that
@@ -25,7 +25,7 @@ with earlier perls.
 
 COPYRIGHT AND LICENCE
 
-Copyright (c) 2009 tom murtagh.  All rights reserved.
+Copyright (c) 2009-2010 tom murtagh.  All rights reserved.
 This library is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.
 
